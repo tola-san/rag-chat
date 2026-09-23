@@ -78,10 +78,10 @@ export function ChatShell() {
     <main className="relative flex min-h-svh flex-col overflow-hidden bg-background text-foreground">
     <div className="pointer-events-none absolute inset-x-[-10%] top-[-5rem] h-96 origin-top bg-[radial-gradient(ellipse_at_top,oklch(0.82_0.14_250/0.95),oklch(0.88_0.10_300/0.65)_42%,transparent_75%)] blur-xl animate-[ambient-glow_10s_ease-in-out_infinite] motion-reduce:animate-none dark:bg-[radial-gradient(ellipse_at_top,oklch(0.48_0.16_255/0.85),oklch(0.38_0.12_300/0.55)_42%,transparent_75%)]" />
 
-      <header className="relative z-10 border-b border-border/70 bg-background/80 backdrop-blur-xl">
+      <header className="relative z-10 border-b border-border/70 bg-background/30 backdrop-blur-xl">
         <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-3">
-            <div className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-[0_1px_2px_oklch(0_0_0/0.18),0_6px_16px_oklch(0_0_0/0.08)]">
+            <div className="flex size-9 items-center justify-center rounded-sm bg-primary text-primary-foreground shadow-[0_1px_2px_oklch(0_0_0/0.18),0_6px_16px_oklch(0_0_0/0.08)]">
               <Sparkles aria-hidden="true" className="size-4.5" strokeWidth={2} />
             </div>
             <div>
@@ -96,7 +96,7 @@ export function ChatShell() {
               variant="ghost"
               size="sm"
               onClick={resetChat}
-              className="gap-1.5 active:scale-96 border border-gray-100"
+              className="gap-1.5 active:scale-96 border border-white/50 hover:bg-zinc-50 backdrop-blur-xl"
             >
               <RotateCcw aria-hidden="true" className="size-3.5 " strokeWidth={1.8} />
               New chat
@@ -127,7 +127,7 @@ export function ChatShell() {
                     key={suggestion}
                     type="button"
                     onClick={() => void submitMessage(suggestion)}
-                    className="rounded-lg border border-border/80 bg-card/70 px-4 py-3 text-left text-sm leading-5 shadow-[0_1px_2px_oklch(0_0_0/0.04)] transition-[border-color,background-color,transform] duration-150 hover:border-foreground/20 hover:bg-card active:scale-96 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                    className="rounded-sm border border-border/80 bg-card/70 px-4 py-3 text-left text-sm leading-5 shadow-[0_1px_2px_oklch(0_0_0/0.04)] transition-[border-color,background-color,transform] duration-150 hover:border-foreground/20 hover:bg-card active:scale-96 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
                   >
                     {suggestion}
                   </button>
@@ -144,7 +144,7 @@ export function ChatShell() {
                   }`}
                 >
                   {message.role === "assistant" && (
-                    <div className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border bg-card shadow-sm">
+                    <div className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-sm border bg-card shadow-sm">
                       <Bot aria-hidden="true" className="size-4" strokeWidth={1.7} />
                     </div>
                   )}
@@ -152,7 +152,7 @@ export function ChatShell() {
                   <div
                     className={
                       message.role === "user"
-                        ? "max-w-[82%] rounded-xl rounded bg-primary px-4 py-2.5 text-sm leading-6 text-primary-foreground shadow-sm"
+                        ? "max-w-[82%] rounded-sm rounded bg-primary px-4 py-2 text-sm leading-6 text-primary-foreground shadow-sm"
                         : "min-w-0 max-w-[88%] pt-1 text-sm leading-7 sm:text-[15px]"
                     }
                   >
@@ -168,12 +168,12 @@ export function ChatShell() {
                             <ol className="mb-3 list-decimal space-y-1 pl-5 last:mb-0">{children}</ol>
                           ),
                           code: ({ children }) => (
-                            <code className="rounded-xl bg-muted px-1.5 py-0.5 font-mono text-[0.86em]">
+                            <code className="rounded-md bg-zinc-50 px-1.5 py-0.5 font-mono text-[0.86em]">
                               {children}
                             </code>
                           ),
                           pre: ({ children }) => (
-                            <pre className="mb-3 overflow-x-auto rounded-xl border bg-muted/60 p-4 text-xs leading-6 last:mb-0">
+                            <pre className="mb-3 overflow-x-auto rounded-md border bg-zinc-50  p-4 text-xs leading-6 last:mb-0">
                               {children}
                             </pre>
                           ),
@@ -185,18 +185,12 @@ export function ChatShell() {
                       message.content
                     )}
                   </div>
-
-                  {message.role === "user" && (
-                    <div className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg bg-secondary text-secondary-foreground">
-                      <UserRound aria-hidden="true" className="size-4" strokeWidth={1.7} />
-                    </div>
-                  )}
                 </article>
               ))}
 
               {isSending && (
                 <div className="flex items-center gap-3 text-muted-foreground">
-                  <div className="flex size-8 items-center justify-center rounded-lg border bg-card shadow-sm">
+                  <div className="flex size-8 items-center justify-center rounded-sm border bg-card shadow-sm">
                     <Bot aria-hidden="true" className="size-4" strokeWidth={1.7} />
                   </div>
                   <div className="flex items-center gap-1.5" aria-label="Gemini is thinking">
@@ -212,7 +206,7 @@ export function ChatShell() {
               )}
 
               {error && (
-                <div className="ml-11 rounded-xl border border-destructive/25 bg-destructive/8 px-4 py-3 text-sm text-destructive">
+                <div className="ml-11 rounded-lg border border-destructive/25 bg-destructive/8 px-4 py-3 text-sm text-destructive">
                   {error}
                 </div>
               )}
@@ -224,7 +218,7 @@ export function ChatShell() {
         <div className="sticky bottom-0 bg-gradient-to-t from-background via-background to-transparent pb-4 pt-8 sm:pb-6">
           <form
             onSubmit={handleSubmit}
-            className="rounded-2xl border border-border/80 bg-card p-2 shadow-[0_1px_2px_oklch(0_0_0/0.08),0_14px_40px_oklch(0_0_0/0.09)]"
+            className="rounded-sm border border-border/80 bg-card p-2 shadow-[0_1px_2px_oklch(0_0_0/0.08),0_14px_40px_oklch(0_0_0/0.09)]"
           >
             <label htmlFor="chat-message" className="sr-only">
               Message Hotmes ai
@@ -250,7 +244,7 @@ export function ChatShell() {
                   size="icon"
                   disabled={!draft.trim() || isSending}
                   aria-label="Send message"
-                  className="rounded-xl transition-[background-color,transform] duration-150 active:scale-96"
+                  className="rounded-sm transition-[background-color,transform] duration-150 active:scale-96"
                 >
                   <ArrowUp aria-hidden="true" className="size-4" strokeWidth={2} />
                 </Button>
