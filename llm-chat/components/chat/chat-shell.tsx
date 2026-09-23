@@ -76,7 +76,7 @@ export function ChatShell() {
 
   return (
     <main className="relative flex min-h-svh flex-col overflow-hidden bg-background text-foreground">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_top,oklch(0.93_0.04_250/0.75),transparent_68%)] dark:bg-[radial-gradient(circle_at_top,oklch(0.3_0.05_255/0.45),transparent_68%)]" />
+    <div className="pointer-events-none absolute inset-x-[-10%] top-[-5rem] h-96 origin-top bg-[radial-gradient(ellipse_at_top,oklch(0.82_0.14_250/0.95),oklch(0.88_0.10_300/0.65)_42%,transparent_75%)] blur-xl animate-[ambient-glow_10s_ease-in-out_infinite] motion-reduce:animate-none dark:bg-[radial-gradient(ellipse_at_top,oklch(0.48_0.16_255/0.85),oklch(0.38_0.12_300/0.55)_42%,transparent_75%)]" />
 
       <header className="relative z-10 border-b border-border/70 bg-background/80 backdrop-blur-xl">
         <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-4 sm:px-6">
@@ -85,11 +85,8 @@ export function ChatShell() {
               <Sparkles aria-hidden="true" className="size-4.5" strokeWidth={2} />
             </div>
             <div>
-              <p className="text-sm font-semibold tracking-tight">Gemini Chat</p>
-              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                <span className="size-1.5 rounded-full bg-sky-500" />
-                Powered through api-ai
-              </div>
+              <p className="text-sm font-semibold tracking-tight">HotMes-Ai</p>
+              
             </div>
           </div>
 
@@ -99,9 +96,9 @@ export function ChatShell() {
               variant="ghost"
               size="sm"
               onClick={resetChat}
-              className="gap-1.5 active:scale-96"
+              className="gap-1.5 active:scale-96 border border-gray-100"
             >
-              <RotateCcw aria-hidden="true" className="size-3.5" strokeWidth={1.8} />
+              <RotateCcw aria-hidden="true" className="size-3.5 " strokeWidth={1.8} />
               New chat
             </Button>
           )}
@@ -115,9 +112,7 @@ export function ChatShell() {
         >
           {messages.length === 0 ? (
             <div className="m-auto flex w-full max-w-2xl flex-col items-center py-12 text-center">
-              <div className="mb-5 flex size-12 items-center justify-center rounded-2xl border border-border/70 bg-card shadow-[0_1px_2px_oklch(0_0_0/0.08),0_12px_32px_oklch(0_0_0/0.06)]">
-                <Bot aria-hidden="true" className="size-5.5" strokeWidth={1.7} />
-              </div>
+             
               <h1 className="text-balance text-3xl font-semibold tracking-[-0.035em] sm:text-4xl">
                 What can I help you think through?
               </h1>
@@ -132,7 +127,7 @@ export function ChatShell() {
                     key={suggestion}
                     type="button"
                     onClick={() => void submitMessage(suggestion)}
-                    className="rounded-xl border border-border/80 bg-card/70 px-4 py-3 text-left text-sm leading-5 shadow-[0_1px_2px_oklch(0_0_0/0.04)] transition-[border-color,background-color,transform] duration-150 hover:border-foreground/20 hover:bg-card active:scale-96 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                    className="rounded-lg border border-border/80 bg-card/70 px-4 py-3 text-left text-sm leading-5 shadow-[0_1px_2px_oklch(0_0_0/0.04)] transition-[border-color,background-color,transform] duration-150 hover:border-foreground/20 hover:bg-card active:scale-96 focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
                   >
                     {suggestion}
                   </button>
@@ -157,7 +152,7 @@ export function ChatShell() {
                   <div
                     className={
                       message.role === "user"
-                        ? "max-w-[82%] rounded-2xl rounded-br-md bg-primary px-4 py-2.5 text-sm leading-6 text-primary-foreground shadow-sm"
+                        ? "max-w-[82%] rounded-xl rounded bg-primary px-4 py-2.5 text-sm leading-6 text-primary-foreground shadow-sm"
                         : "min-w-0 max-w-[88%] pt-1 text-sm leading-7 sm:text-[15px]"
                     }
                   >
@@ -173,7 +168,7 @@ export function ChatShell() {
                             <ol className="mb-3 list-decimal space-y-1 pl-5 last:mb-0">{children}</ol>
                           ),
                           code: ({ children }) => (
-                            <code className="rounded-md bg-muted px-1.5 py-0.5 font-mono text-[0.86em]">
+                            <code className="rounded-xl bg-muted px-1.5 py-0.5 font-mono text-[0.86em]">
                               {children}
                             </code>
                           ),
@@ -232,14 +227,14 @@ export function ChatShell() {
             className="rounded-2xl border border-border/80 bg-card p-2 shadow-[0_1px_2px_oklch(0_0_0/0.08),0_14px_40px_oklch(0_0_0/0.09)]"
           >
             <label htmlFor="chat-message" className="sr-only">
-              Message Gemini
+              Message Hotmes ai
             </label>
             <Textarea
               id="chat-message"
               value={draft}
               onChange={(event) => setDraft(event.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Message Gemini…"
+              placeholder="Message HotMes Ai...."
               disabled={isSending}
               rows={2}
               className="max-h-40 min-h-14 resize-none border-0 bg-transparent px-2.5 py-2 shadow-none focus-visible:ring-0 dark:bg-transparent"
@@ -249,7 +244,7 @@ export function ChatShell() {
                 Enter to send · Shift + Enter for a new line
               </p>
               <div className="ml-auto flex items-center gap-2">
-                <span className="text-xs text-muted-foreground">Gemini 3.5 Flash-Lite</span>
+                
                 <Button
                   type="submit"
                   size="icon"
@@ -262,9 +257,7 @@ export function ChatShell() {
               </div>
             </div>
           </form>
-          <p className="mt-2 text-center text-[11px] text-muted-foreground">
-            Gemini can make mistakes. Check important information.
-          </p>
+         
         </div>
       </section>
     </main>
