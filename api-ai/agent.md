@@ -1,6 +1,6 @@
 # AGENTS.md — Operational Policy & Codebase Specification
 
-This repository is a production-ready, containerized REST API providing Retrieval-Augmented Generation (RAG) capabilities using TypeScript, Express, LangChain.js, and Google Gemini.
+This repository is a containerized REST API that lets frontend applications consume Google Gemini through a TypeScript and Express backend.
 
 ---
 
@@ -10,9 +10,9 @@ This repository is a production-ready, containerized REST API providing Retrieva
 | :--- | :--- | :--- |
 | **Runtime** | Node.js | v20.x or v22.x LTS (Alpine Linux in container) |
 | **Language** | TypeScript | 5.x (`strict: true`, `target: ES2022`, `module: NodeNext`) |
-| **Server Framework** | Express | 4.x (Native ES Modules via `"type": "module"`) |
-| **LLM & Embeddings**| LangChain.js | `@langchain/core`, `@langchain/google-genai`, `langchain` |
-| **Vector Index** | In-Memory | `MemoryVectorStore` (`langchain/vectorstores/memory`) |
+| **Server Framework** | Express | 5.x (Native ES Modules via `"type": "module"`) |
+| **AI SDK** | Google Gen AI SDK | `@google/genai` |
+| **Model** | Google Gemini | Configured with `GEMINI_MODEL` |
 | **Dev Runner** | `tsx` | Direct TypeScript execution with live reload |
 | **Container** | Docker | Multi-stage builder (`node:22-alpine`) + Compose |
 | **Hosting Target** | Render | Web Service (Free Tier, 512 MB memory constraint) |
@@ -32,9 +32,10 @@ npx tsc --noEmit
 npm run build
 
 # Verify health check endpoint locally
-curl -I http://localhost:5000/healthz
+curl -I http://localhost:5051/healthz
 
-# Verify chat RAG endpoint locally
-curl -X POST http://localhost:5000/api/chat \
+# Verify the versioned Gemini chat endpoint locally
+curl -X POST http://localhost:5051/api/v1/chat \
   -H "Content-Type: application/json" \
-  -d '{"question": "How long does the battery last?", "history": []}'
+  -d '{"question": "What is an API?", "history": []}'
+```
