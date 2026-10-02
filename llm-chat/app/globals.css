@@ -130,6 +130,14 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .chat-composer-beam::before,
+  .chat-composer-beam::after,
+  .chat-composer-beam [data-beam-bloom] {
+    animation: none !important;
+  }
+}
+
 
 @layer base {
   * {

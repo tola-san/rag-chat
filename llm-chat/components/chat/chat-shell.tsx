@@ -2,6 +2,7 @@
 
 import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { ArrowUp, Bot, MessageSquare, PanelLeft, Plus, Sparkles, Trash2 } from "lucide-react";
+import { BorderBeam } from "border-beam";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -429,36 +430,45 @@ export function ChatShell() {
           </div>
 
           <div className="bg-gradient-to-t from-background via-background to-transparent pb-4 pt-8 sm:pb-6">
-            <form
-              onSubmit={handleSubmit}
-              className="rounded-sm border border-border/80 bg-card p-2 shadow-[0_1px_2px_oklch(0_0_0/0.08),0_14px_40px_oklch(0_0_0/0.09)]"
+            <BorderBeam
+              size="md"
+              colorVariant="colorful"
+              strength={0.7}
+              active={!isSending}
+              theme="light"
+              className="chat-composer-beam"
             >
-              <label htmlFor="chat-message" className="sr-only">Message HotMes Ai</label>
-              <Textarea
-                id="chat-message"
-                value={draft}
-                onChange={(event) => setDraft(event.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Message HotMes Ai...."
-                disabled={isSending}
-                rows={2}
-                className="max-h-40 min-h-14 resize-none border-0 bg-transparent px-2.5 py-2 shadow-none focus-visible:ring-0 dark:bg-transparent"
-              />
-              <div className="flex items-center justify-between gap-3 px-1 pt-1">
-                <p className="hidden text-xs text-muted-foreground sm:block">
-                  Enter to send · Shift + Enter for a new line
-                </p>
-                <Button
-                  type="submit"
-                  size="icon"
-                  disabled={!draft.trim() || isSending}
-                  aria-label="Send message"
-                  className="ml-auto rounded-sm transition-[background-color,transform] duration-150 active:scale-96"
-                >
-                  <ArrowUp aria-hidden="true" className="size-4" strokeWidth={2} />
-                </Button>
-              </div>
-            </form>
+              <form
+                onSubmit={handleSubmit}
+                className="rounded-sm border border-border/80 bg-card p-2 shadow-[0_1px_2px_oklch(0_0_0/0.08),0_14px_40px_oklch(0_0_0/0.09)]"
+              >
+                <label htmlFor="chat-message" className="sr-only">Message HotMes Ai</label>
+                <Textarea
+                  id="chat-message"
+                  value={draft}
+                  onChange={(event) => setDraft(event.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Message HotMes Ai...."
+                  disabled={isSending}
+                  rows={2}
+                  className="max-h-40 min-h-14 resize-none border-0 bg-transparent px-2.5 py-2 shadow-none focus-visible:ring-0 dark:bg-transparent"
+                />
+                <div className="flex items-center justify-between gap-3 px-1 pt-1">
+                  <p className="hidden text-xs text-muted-foreground sm:block">
+                    Enter to send · Shift + Enter for a new line
+                  </p>
+                  <Button
+                    type="submit"
+                    size="icon"
+                    disabled={!draft.trim() || isSending}
+                    aria-label="Send message"
+                    className="ml-auto rounded-sm transition-[background-color,transform] duration-150 active:scale-96"
+                  >
+                    <ArrowUp aria-hidden="true" className="size-4" strokeWidth={2} />
+                  </Button>
+                </div>
+              </form>
+            </BorderBeam>
           </div>
         </section>
       </div>
