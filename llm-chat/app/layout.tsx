@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gemini Chat",
+  title: "Hotmes Ai",
   description: "A focused chat interface powered by the Gemini API.",
 };
 
